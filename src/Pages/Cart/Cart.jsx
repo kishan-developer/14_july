@@ -1,58 +1,200 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Cart.css';
 import { useThemeContextValue } from '../../Utils/context/ThemeContext';
 import { FaCarSide } from "react-icons/fa";
 import { FaAnglesRight } from "react-icons/fa6";
 import CheckoutProduct from './Checkout/CheckoutProduct';
-import MyWishlist from './MyWishlist/MyWishlist';
-import { useNavigate } from 'react-router-dom';
-import AddressForm from './AddressForm';
+// import MyWishlist from './MyWishlist/MyWishlist';
+import { Link, useNavigate } from 'react-router-dom';
+// import AddressForm from './AddressForm';
 import { IoCloseCircle } from "react-icons/io5";
-import AdForm from '../../Pages/Cart/AdForm';
+// import AdForm from '../../Pages/Cart/AdForm';
+// import useDeleteProduct from '../../Utils/API/useDeleteProduct';
+import OrderForm from './OrderForm';
 
 const Cart = () => {
-    const { state, addresssMode, setmodelAddress } = useThemeContextValue();
+    const { state: { cart }, dispatch, addresssMode, setmodelAddress, getCartItem, cartItems, cartLength, formData, setFormData, OrderCartItem, setOrderCartItem, clearCartPage, total, setTotal, cartproductQuantity, setCartproductQuantity, addtocart, productID, setproductID, setQuantity } = useThemeContextValue();
     const navigate = useNavigate();
     const [model, setModel] = useState(false);
     // const [cart, setCart] = React.useState(getCartFromLocalStorage());
-    const [total, setTotal] = React.useState(0);
-    const [cartItems, setCartItems] = React.useState(0);
+
+    const [Subtotal, setSubTotal] = useState(0);
+
+    const [cartDatas, setCartData] = useState([]);
+    const [cartUserData, setCartUserData] = useState([])
+    //checing the product order status
+    const [orderStatus, setOrderStatus] = useState(false);
+    // cart orderitem 
+    const [orderitem, setOrder] = useState();
+
+    useEffect(() => {
+        const userAddress = JSON.parse(localStorage.getItem("formD"))
+        setFormData(userAddress);
+        // console.log("user data in cart page", formData);
+        setTotal(cartItems.totalPrice)
+    }, [])
+
+    
+
+
+    // Function to update total price based on cart items
+    // const updateTotalPrice = (items) => {
+    //     const totalPrice = items.reduce((acc, item) => {
+    //         // console.log("reduce item",item);
+    //         return acc + (item.quantity * item.product.price);
+    //     }, 0);
+    //     setTotal(totalPrice);
+    //     localStorage.setItem("cartTotalPrice",total)
+    // };
+   
+
+    // Function to handle quantity change
+    // const handleQuantityChange = (itemId, newQuantity) => {
+    //     // console.log("itemId", itemId)
+    //     // console.log("newQuantity", newQuantity)
+
+    //     const updatedCart = cartItems?.items?.map(item => {
+    //         // console.log("qunatity change", item)
+    //         if (item.product._id === itemId) {
+    //             return { ...item, quantity: newQuantity };
+    //         }
+    //         return item;
+    //     });
+    //     console.log("updatedCart",updatedCart)
+    //     setCartData(updatedCart);
+    //     updateTotalPrice(updatedCart);
+    //     console.log("total price.............", total);
+    // };
+
+    const handleQuantityChange = (itemId, newQuantity) => {
+        console.log("itemId", itemId)
+        // setproductID(itemId);
+        console.log("newQuantity", newQuantity)
+        setQuantity(newQuantity)
+
+        // const updatedCart = cartItems?.items?.map(item => {
+        //     // console.log("qunatity change", item)
+        //     if (item.product._id === itemId) {
+        //         return { ...item, quantity: newQuantity };
+        //     }
+        //     return item;
+        // });
+        // console.log("updatedCart", updatedCart)
+        setCartData(updatedCart);
+        // updateTotalPrice(updatedCart);
+        // console.log("total price.............", total);
+    };
+
+    // console.log("cartDatas", cartDatas)
+
+    // Function to handle size change
+    const handleSizeChange = (itemId, newSize) => {
+        // console.log("itemId", itemId)
+        // console.log("newSize", newSize)
+        addtocart();
+
+        const updatedCart = cartItems?.items?.map(item => {
+            // console.log("size change ",item);
+            // if (item.id === itemId) {
+            //     return { ...item, size: newSize };
+            // }
+            // return item;
+        });
+        // setCartData(updatedCart);
+    };
+
+
+    /////////////////////////////////////////////////////////////////
+
+    const quantityDecrement = () => {
+        // quantity, 
+        // console.log("item quantity",item.quantity)
+        setCartproductQuantity(cartproductQuantity - 1);
+        setTotal(cartproductQuantity * total)
+        // console.log("quantity decrement ", cartproductQuantity)
+        // console.log("decrement total price", total)
+    }
+
+    // console.log("quantity inceremtne ", cartproductQuantity)
+    const quantityIncrement = () => {
+        // console.log("total before Increment ", total);
+        // Increment the quantity by 1
+        setCartproductQuantity(cartproductQuantity + 1);
+
+        // Calculate the new total price
+        const newTotal = (cartproductQuantity + 1) * item_products.price; // Assuming pricePerItem is the price of one item
+
+        // Update the total price
+        setTotal(newTotal);
+
+        // console.log("incremented total price", newTotal);
+    }
+    // console.log("quantity inceremtne 1 ", cartproductQuantity)
+    localStorage.setItem("Cart_Page_total_Quantity", cartproductQuantity)
+    localStorage.setItem("Cart_Page_total_Price", total)
+
+
+    /////////////////////////////////////////////////////////////////
+
+
+
+
+    const ClearCart = async () => {
+
+        try {
+            handlecheckoutItem();
+            getCartItem(); // Assuming getCartItem is a function to update cart items
+            navigate('/payment')
+
+        } catch (error) {
+            console.error('Error occurred while deleting:', error);
+        }
+    };
+
+    // after clear cart set the all cart item inside the state value 
+    const handlecheckoutItem = (item) => {
+        // console.log(item);
+        setOrder(item)
+        // console.log("222222222222222", orderitem)
+        clearCartPage();
+        // setOrderCartItem([...OrderCartItem, item]);
+    }
+
+    // console.log("cartItems", cartItems);
+
+
 
     const handleAdd = () => {
         setmodelAddress(!addresssMode);
         // navigate('/checkoutpage'); 
     }
-    
 
     const toggleModal = () => {
         setModel(!model)
     }
 
+    const cartQuantityUpdated = localStorage.getItem("Item_Qunatity_after_increment_cart_page");
+    // setTotal(total*cartQuantityUpdated);
+    const qunt = JSON.parse(cartQuantityUpdated);
+    // console.log("total price in cart page",total * qunt)
 
-    // React.useEffect(() => {
-    //     localStorage.setItem("cart", JSON.stringify(cart));
-
-    //     let newTotal = cart.reduce((total, cartItem) => {
-    //         return (total += cartItem.amount * cartItem.price);
-    //     }, 0);
-    //     newTotal = parseFloat(newTotal.toFixed(2));
-    //     setTotal(newTotal);
-    //     // cart items
-    //     // let newCartItems = cart.reduce((total, cartItem) => {
-    //     //     return (total += cartItem.amount);
-    //     // }, 0);
-    //     // setCartItems(newCartItems);
-    // }, [cart]);
+    
 
     return (
         <div className='h-fit mt-10 w-full px-[15px] xl:flex xl:flex-col xl:items-center xl:justify-center lg:flex lg:flex-col lg:items-center lg:justify-center 
             md:flex md:flex-col md:items-center md:justify-center 
         '>
-            <div className='xl:w-[1170px] lg:w-full md:w-full sm:w-full w-full  
+            <div className='xl:w-[1170px] lg:w-full md:w-full sm:w-full w-full flex gap-5
             pt-[39px] px-[15px] pb-0 lg:mx-[160px] xl:mx-[160px] sm:m-0 m-0 text-[16px] '>
                 <div >
                     <span className='font-bold text-[16px]'>My Bag</span>
-                    {` ${state.cart.length} item(s)`}
+                    {` ${cartLength} item(s)`}
+                </div>
+                <div
+                    className='font-bold cursor-pointer bg-gray-500 px-3 py-1 rounded-lg '
+                    onClick={ClearCart}
+                >
+                    Clear Cart
                 </div>
             </div>
 
@@ -67,13 +209,20 @@ const Cart = () => {
                                 Yay! You get FREE delivery on this order
                             </span>
                         </div>
-                        
+
                     </div>
                     <div>
                         {
-                            state.cart.map((item, index) => (
-                                <CheckoutProduct item={item} key={index}/>
-                              
+                            cartItems?.items?.map((item, index) => (
+                                <CheckoutProduct
+                                    item={item}
+                                    key={index}
+                                    onChange={(e) => handleCheckoutItem(item)}
+                                    handleSizeChange={handleSizeChange}
+                                    handleQuantityChange={handleQuantityChange}
+                                    cartDatas={cartDatas}
+                                />
+
                             ))
                         }
                     </div>
@@ -102,7 +251,7 @@ const Cart = () => {
 
                     <div className='border-[1px] border-gray-300 h-[440px] cursor-pointer md:text-[12px]'>
                         <div className='p-[6px] h-[45px]'>
-                            <div className='bg-[#42A2A11A] text-[11px] px-3 rounded-md h-[32px] text-[#42A2A2] flex items-center justify-between font-semibold '> 
+                            <div className='bg-[#42A2A11A] text-[11px] px-3 rounded-md h-[32px] text-[#42A2A2] flex items-center justify-between font-semibold '>
                                 <div>Apply Coupon / Gift Card / Referral</div>
                                 <div className='flex items-center justify-center gap-2 cursor-pointer'>Redeem <span><FaAnglesRight /></span></div>
                             </div>
@@ -113,32 +262,40 @@ const Cart = () => {
                         <div className=' p-[16px] '>
                             <div className='flex items-center justify-between h-[38px] pb-[10px] text-[12px]'>
                                 <h2>Total</h2>
-                                <h2>₹4999</h2>
-                           </div>
+                                <h2>{total}</h2>
+                            </div>
                             <div className='flex items-center justify-between h-[38px] pb-[10px] text-[12px]'>
                                 <h2>Delivery Fee</h2>
                                 <h2 className='text-[#1D8802]'>FREE</h2>
                             </div>
                             <div className='flex items-center justify-between h-[38px] pb-[10px] text-[12px]'>
                                 <h2>Bag Discount</h2>
-                                <h2 className=''>-₹550</h2>
+                                <h2 className=''>0</h2>
                             </div>
                             <div className='flex items-center justify-between h-[38px] pb-[10px] text-[12px] font-bold'>
                                 <h2>Subtotal</h2>
-                                <h2 className=''>₹399</h2>
+                                <h2 className=''>₹{total}</h2>
                             </div>
                         </div>
 
                         <div className='flex items-center  h-[70px] p-[10px] border-t-[1px] border-gray-300'>
-                            <h2 className='h-[40px] w-1/2 flex flex-col pl-2'>
+                            <div className='h-[40px] w-1/2 flex flex-col pl-2'>
                                 <h2 className='text-[12px] w-[50px] pb-[1px] font-semibold'>Total</h2>
-                                <h2 className='text-[16px] w-[50.14px] font-semibold'><span className='text-[12px]'>₹</span>399</h2>
-                                 </h2>
-                            <button 
-                                onClick={toggleModal}
-                                className='btn-modal bg-[#42A2A2]   rounded-md w-[280px] h-[40px] p-[8px] font-bold text-[16px] text-[#FFFFFF]'
+                                <div className='text-[16px] w-[50.14px] font-semibold'>
+                                    <span className='text-[12px]'>₹</span>
+                                    {total}
+                                </div>
+                            </div>
+                            <button
+
+                                className='btn-modal bg-[#42A2A2] hover:bg-green-[#00B852] hover:text-gray-800 cursor-pointer rounded-md w-[280px] h-[40px] p-[8px] font-bold mt-2 text-[16px] text-[#FFFFFF]'
                             >
-                                ADD ADDRESS
+                                {formData?.street !== "" ? (<span ><Link to='/payment'>PROCCED TO CHECKOUT</Link></span>)
+                                    :
+                                    (<span onClick={toggleModal}>Add Address</span>)
+
+                                }
+
                             </button>
                         </div>
 
@@ -173,9 +330,10 @@ const Cart = () => {
                         <div className="modal-content">
                             <div className='w-full'>
                                 {/* <AddressForm /> */}
-                                <AdForm/>
+                                {/* <AdForm /> */}
+                                <OrderForm setOrderStatus={setOrderStatus} model={model} setModel={setModel} />
                             </div>
-                            
+
                             <button className='close-modal'
                                 onClick={toggleModal}
                             ><IoCloseCircle size={40} /></button>

@@ -11,93 +11,24 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 function TopSection() {
+
+    const data = [
+        { id: 1, image: "https://t3.ftcdn.net/jpg/03/97/69/26/360_F_397692663_13eOSvqWVuwpIjT7UDQGUzdvrTd0y5dq.jpg"},
+        
+    ]
+
+    console.log("data images : ", data)
+
     return (
-        <div className='w-full lg:h-[550px] h-fit flex gap-3 overflow-hidden '>
-            <Swiper
-                // install Swiper modules
-                modules={[Navigation, Pagination, Scrollbar]}
-                spaceBetween={20}
-                slidesPerView={3}
-                navigation
-                // pagination={{ clickable: true }}
-                // scrollbar={{ draggable: true }}
-                // onSwiper={(swiper) => console.log(swiper)}
-                // onSlideChange={() => console.log('slide change')}
-            >
+        <>
+            <div className="parent w-full h-[530px] flex items-center justify-center ">
+                { data.map((item, index)=> (
+                    <img  key={index} className="w-full h-[530px]" src={item.image} alt="images" />
+                ))}
+                
+            </div>
 
-                <SwiperSlide  >
-                    <img
-                        src="https://images.bewakoof.com/uploads/grid/app/OOFSale-1X1-RM-Common-1701957479.gif"
-                        alt="image 1"
-                        className="h-full "
-                    />
-                </SwiperSlide>
-                <SwiperSlide >
-                    <img
-                        src="https://images.bewakoof.com/uploads/grid/app/Cargo-Joggers-Common-1x1-Banner-1709215562.jpg"
-                        alt="image 1"
-                        className="h-full  "
-                    />
-                </SwiperSlide>
-                <SwiperSlide >
-                    <img
-                        src="https://images.bewakoof.com/uploads/grid/app/SummerPalooza-1x1-SPACE-men-1708928166.jpg"
-                        alt="image 1"
-                        className="h-full "
-                    />
-                </SwiperSlide>
-                <SwiperSlide >
-                    <img
-                        src="https://images.bewakoof.com/uploads/grid/app/YEFD-CO-ords-common-1x1-banner--2--1709271271.jpg"
-                        alt="image 1"
-                        className="h-full  "
-                    />
-                </SwiperSlide>
-                <SwiperSlide  >
-                    <img
-                        src="https://images.bewakoof.com/uploads/grid/app/OOFSale-1X1-RM-Common-1701957479.gif"
-                        alt="image 1"
-                        className="h-full "
-                    />
-                </SwiperSlide>
-                <SwiperSlide >
-                    <img
-                        src="https://images.bewakoof.com/uploads/grid/app/Cargo-Joggers-Common-1x1-Banner-1709215562.jpg"
-                        alt="image 1"
-                        className="h-full  "
-                    />
-                </SwiperSlide>
-                <SwiperSlide >
-                    <img
-                        src="https://images.bewakoof.com/uploads/grid/app/SummerPalooza-1x1-SPACE-men-1708928166.jpg"
-                        alt="image 1"
-                        className="h-full "
-                    />
-                </SwiperSlide>
-                <SwiperSlide >
-                    <img
-                        src="https://images.bewakoof.com/uploads/grid/app/YEFD-CO-ords-common-1x1-banner--2--1709271271.jpg"
-                        alt="image 1"
-                        className="h-full  "
-                    />
-                </SwiperSlide>
-                <SwiperSlide >
-                    <img
-                        src="https://images.bewakoof.com/uploads/grid/app/OOFSale-1X1-RM-Common-1701957479.gif"
-                        alt="image 1"
-                        className="h-full "
-                    />
-                </SwiperSlide>
-                <SwiperSlide >
-                    <img
-                        src="https://images.bewakoof.com/uploads/grid/app/Classic-Fit-Tshirt-Common-1x1-banner-1709289795.jpg"
-                        alt="image 1"
-                        className="h-full "
-                    />
-                </SwiperSlide>
-            </Swiper>
-        </div>
-
+        </>
     )
 }
 

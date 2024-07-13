@@ -16,10 +16,16 @@ import Mobile from '../Pages/Mobile/Mobile';
 import Private from '../Utils/ProtectedRoute/Private';
 import DropDown from '../Components/ChildComponents/DropDown';
 import CheckoutAddress from '../Pages/Cart/Checkout/CheckoutAddress';
+import Order from '../Pages/Order/Order';
+import SingleOrderData from '../Pages/Order/SingleOrderData.jsx';
+import MyAccount from '../Pages/Admin/MyAccount.jsx';
+import Payment from '../Pages/Order/Payment.jsx';
+import OrderPlace from '../Pages/Order/OrderPlace';
 
 function AllRoutes() {
     // const [auth , setAuth] = useState(false);
     const {id} = useParams();
+    const { orderId } = useParams();
 
     return (
 
@@ -37,20 +43,29 @@ function AllRoutes() {
                 
                 <Route path="/" element={<Home />} />
                 <Route path="/men" element={<Product />} />
-                <Route path="women" element={<Product />} />
-                <Route path='mobilecover' element={<Mobile/>} />
+                <Route path="/women" element={<Product />} />
+                <Route path='/mobilecover' element={<Mobile/>} />
 
                 <Route path='/review/:id' element={<ProductReview/>} />
 
                 <Route element={<Private/>} >
+                    {/* <Route path="/admin" element={<Admin />} /> */}
                     <Route path='/fav' element={<Fav />} />
+                    <Route path='/cart' element={<Cart />} />
+                    <Route path="/checkoutpage" element={<CheckoutAddress />} />
+                    <Route path="/order" element={<Order/>} />
+                    <Route path="/orderplace" element={<OrderPlace />} />
+                    <Route path="/order/:orderId" element={<SingleOrderData />} />
+
+                    <Route path="/myaccount" element={<MyAccount/>} />
+                    <Route path='/payment' element={<Payment/>} />
                 </Route>
 
                 <Route path="/login" element={<Login />} />
                 <Route path="signup" element={<SignUp />} />
-                <Route path="/admin" element={<Admin/> } />
-                <Route path='/cart' element={<Cart />} />
-                <Route path="/checkoutpage" element={<CheckoutAddress />} />
+                
+                
+                
             </Routes>
         </BrowserRouter>
         
