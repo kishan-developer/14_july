@@ -72,64 +72,70 @@ function Home() {
     }
 
   ]
-  
+
 
   return (
     <div className='home w-full h-fit block overflow-hidden bg-red-50'>
-      
+
       <div className=" w-full lg:h-[550px] h-fit  gap-3 flex justify-center  mb-5">
-        <TopSection/> 
+        <TopSection />
         {/* <Carousel/> */}
       </div>
 
       <div className="flex items-center justify-center gap-3 w-full h-[auto] text-center text-black text-sm my-5 ">
         <P_Cards />
       </div>
-      
 
-      <div className="block w-full h-[40rem] py-2 mb-10">
-        <h2 className='w-full h-8 text-center lg:text-2xl md:text-lg text-[0.8rem] font-800'> Designs of the Week</h2>
+
+      <div className="block w-full h-[40rem] py-2 mb-20">
+        <h2 className='w-full  text-center xl:text-3xl lg:text-3xl md:text-lg text-[1rem] font-bold mb-10 mt-20'>
+          <span className="border-b-2 border-black">Designs of the Week</span>
+        </h2>
         <div className="images flex w-full h-[40rem]">
           <img className='w-1/2' src="https://cdn.shopify.com/s/files/1/0155/8131/products/Q8A6531.jpg?v=1659791015" alt="" />
           <img className='w-1/2' src="https://cdn.shopify.com/s/files/1/0155/8131/files/3E9A9391_a5f205e4-bdc9-4c21-b034-9a6fda54b7b5.jpg?v=1719497121" alt="" />
         </div>
       </div>
 
-        {/* Origin category */}
+      {/* Origin category */}
 
-      <div className="block w-full py-2">
-        <h2 className='w-full h-8 text-center lg:text-2xl md:text-lg text-[0.8rem] font-800'> Product Category</h2>
-        <OriginData/>
+      <div className="block w-full py-10 ">
+        <h2 className='w-full  text-center xl:text-3xl lg:text-3xl md:text-lg text-[0.8rem] font-bold mt-20 '>
+          <span className="border-b-2 border-black">Product Category</span>
+        </h2>
+        <OriginData />
       </div>
 
       <div className="view_more">
-        
+
         <div className="w-full  h-[auto]">
           {/* popular category*/}
           <p className="w-full flex flex-col items-center justify-center">
-            <span className="border-b-2 border-black font-semibold text-[1rem]">View More</span>
+            <span className="border-b-2 border-black text-[1rem] font-bold mb-10 mt-20">View More</span>
             <h2 className="text-[2rem] font-bold">POPULAR CATEGORIES</h2>
             <p>Everyone loves coming back to these categories</p>
           </p>
-        
+
           {/*  view cart products */}
           <ViewCat data={viewdata_1} />
 
         </div>
 
-        
+
       </div>
 
       <div className="block w-full py-2 mb-10">
-        <h2 className='w-full h-8 text-center lg:text-2xl md:text-lg text-[0.8rem] font-800'>Brand Video</h2>
+        <h2 className='w-full h-8 text-center xl:text-3xl lg:text-3xl text-[0.8rem] font-bold mb-10 mt-20'>
+          <span className="border-b-2 border-black">Brand Video</span>
+        </h2>
         <Videos />
       </div>
-      
 
 
-        <NewFooter/>
-      
-      
+
+      <NewFooter />
+
+
 
       {/* <Footer /> */}
 
