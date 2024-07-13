@@ -5,7 +5,7 @@ function P_Cards() {
     const dataS = [
         { 
             id: 101, 
-            image: "https://itokri.com/cdn/shop/collections/sample-nitin-collection-thumb_957934d9-12db-45a0-a333-d56317854c54.jpg?v=1720789764" ,
+            image: "https://itokri.com/cdn/shop/files/3T1A1906.jpg?v=1720782364&width=533" ,
             title: "3pc Dharwad Suit Material Sets",
             category: "from Karnataka"
 

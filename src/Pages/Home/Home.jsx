@@ -87,23 +87,6 @@ function Home() {
       </div>
       
 
-      {/* this contain to contains the cards  */}
-
-
-
-
-
-      {/* /////////////////////////////////////////////////////////////// */}
-
-      {/*  old code  */}
-      {/* <div className="flex gap-3 w-full h-[260px] text-center text-black text-sm lg:px-[200px]">
-       <Second/>
-      </div> */}
-
-      {/* <div className="w-full h-54">
-        <img className='w-full h-54' src="https://images.bewakoof.com/uploads/grid/app/Blockbuster-deal-thin-strip-Desktop-Hoodies-under-999-1701969138.jpg" alt="" />
-      </div> */}
-
       <div className="block w-full h-[40rem] py-2 mb-10">
         <h2 className='w-full h-8 text-center lg:text-2xl md:text-lg text-[0.8rem] font-800'> Designs of the Week</h2>
         <div className="images flex w-full h-[40rem]">
@@ -111,17 +94,6 @@ function Home() {
           <img className='w-1/2' src="https://cdn.shopify.com/s/files/1/0155/8131/files/3E9A9391_a5f205e4-bdc9-4c21-b034-9a6fda54b7b5.jpg?v=1719497121" alt="" />
         </div>
       </div>
-
-      {/* <div className="block w-full h-78 py-2">
-        <h2 className='w-full h-8 text-center lg:text-2xl md:text-lg text-[0.8rem] font-800'> TRENDING CATEGORIES</h2>
-        <div className='w-full grid  grid-cols-6 '>
-          <TradingCat />
-        </div>
-      </div> */}
-
-      {/* best seller category  */}
-     
-
 
         {/* Origin category */}
 
@@ -139,13 +111,9 @@ function Home() {
             <h2 className="text-[2rem] font-bold">POPULAR CATEGORIES</h2>
             <p>Everyone loves coming back to these categories</p>
           </p>
-          
-
+        
           {/*  view cart products */}
           <ViewCat data={viewdata_1} />
-
-          {/* best seller */}
-
 
         </div>
 
