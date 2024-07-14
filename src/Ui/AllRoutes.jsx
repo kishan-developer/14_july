@@ -42,8 +42,8 @@ function AllRoutes() {
                 </Route>
                 
                 <Route path="/" element={<Home />} />
-                <Route path="/men" element={<Product />} />
-                <Route path="/women" element={<Product />} />
+{/*                 <Route path="/men" element={<Product />} /> */}
+{/*                 <Route path="/women" element={<Product />} /> */}
                 <Route path='/mobilecover' element={<Mobile/>} />
 
                 <Route path='/review/:id' element={<ProductReview/>} />
