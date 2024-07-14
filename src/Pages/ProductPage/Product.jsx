@@ -158,7 +158,7 @@ function Product() {
                            
                             { logging ?  (<h1 className='bg-red-500 absolute top-[350px] left-[600px] w-[400px] flex items-center justify-center font-bold text-5xl'> Please Wait Data is Lodding </h1>) : ""}
                          
-                            {Data.map((product, index) => (
+{/*                             {Data.map((product, index) => (
                                 
                                 <ProductCart
                                     // index={index}
@@ -166,7 +166,7 @@ function Product() {
                                     product={product}
 
                                 />
-                            ))}
+                            ))} */}
                         </div>
                         <div className='bg-gray-800 font-semibold text-white w-fit py-2  mv-2 px-3 fixed bottom-10 right-[20px]'>
                             <span>{page} </span>
