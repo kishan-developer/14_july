@@ -1,11 +1,11 @@
 import React from 'react';
-import AllRoutes from './Ui/AllRoutes';
+import Home from '../src/Pages/Home/Home';
 import './App.css';
 
 function App() {
   return (
     <div className='font-mono app' >
-      <AllRoutes/>
+      <Home/>
       {/* <AllRoutes/> */}
     </div>
   )

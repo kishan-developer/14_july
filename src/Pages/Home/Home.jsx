@@ -15,6 +15,7 @@ import Videos from './P_Cards/Videos';
 import ViewCat from './P_Cards/ViewCat';
 import NewFooter from './P_Cards/NewFooter';
 
+
 function Home() {
 
   const viewdata_1 = [
@@ -76,7 +77,7 @@ function Home() {
 
   return (
     <div className='home w-full h-fit block overflow-hidden bg-red-50'>
-
+      
       <div className=" w-full lg:h-[550px] h-fit  gap-3 flex justify-center  mb-5">
         <TopSection />
         {/* <Carousel/> */}
