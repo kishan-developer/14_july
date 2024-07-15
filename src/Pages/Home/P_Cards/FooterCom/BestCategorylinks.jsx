@@ -95,7 +95,7 @@ function BestCategorylinks() {
   return (
     <div className="first ">
       <h2 className="w-full font-bold text-gray-400 text-[1.4rem]">Best Category Links</h2>
-      <div className="w-full flex flex-row text-white mt-5">
+      <div className="w-full flex xl:flex-row lg:flex-row md:flex-row sm:flex-col flex-col text-white mt-5">
         <div className="w-1/2 ">
           {
             quicklinks.map((item, index) => (

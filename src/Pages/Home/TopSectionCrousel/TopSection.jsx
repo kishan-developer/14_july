@@ -13,17 +13,16 @@ import 'swiper/css/scrollbar';
 function TopSection() {
 
     const data = [
-        { id: 1, image: "https://t3.ftcdn.net/jpg/03/97/69/26/360_F_397692663_13eOSvqWVuwpIjT7UDQGUzdvrTd0y5dq.jpg"},
-        
+        { id: 1, image: "https://t3.ftcdn.net/jpg/03/97/69/26/360_F_397692663_13eOSvqWVuwpIjT7UDQGUzdvrTd0y5dq.jpg"}, 
     ]
 
     console.log("data images : ", data)
 
     return (
         <>
-            <div className="parent w-full h-[530px] flex items-center justify-center ">
+            <div className="parent w-full lg:h-[550px] md:h-[400px] sm:h-[300px] h-[130px] flex items-center justify-center  pb-5">
                 { data.map((item, index)=> (
-                    <img  key={index} className="w-full h-[530px]" src={item.image} alt="images" />
+                    <img  key={index} className="w-full h-full" src={item.image} alt="images" />
                 ))}
                 
             </div>

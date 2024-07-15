@@ -57,12 +57,12 @@ function P_Cards() {
 
 
   return (
-    <div className="w-auto h-[fit-content] bg-red-50 flex gap-5 flex-row flex-wrap items-center pt-5">
+    <div className="w-full  grid gap-10 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1  ">
         {/* her show 4 cards with images */}
         {
             dataS.map((item, index)=> (
-                <div key={index} className="card_details h-full w-auto  cursor-pointer">
-                    <img onClick={()=> alert(item.id)}  className=" h-[360px] bg-gray-300 hover:scale-x-105 rounded-lg " src={item.image} />
+                <div key={index} className="card_details h-full w-auto  cursor-pointer flex flex-col items-center justify-center">
+                    <img onClick={()=> alert(item.id)}  className=" xl:h-[360px] lg:h-[280px] md:h-[200px] sm:h-[200px] h-[200px] bg-gray-300 hover:scale-x-105 rounded-lg " src={item.image} />
                     <div className="flex flex-col items-start px-3 py-1">
                         <p className="text-md font-semibold ">{item.title}</p>
                         <p>{item.category}</p>

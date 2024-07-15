@@ -90,7 +90,7 @@ function NewFooter() {
     ]
     return (
         <>
-            <div className="w-full bg-[#313131] h-[fit-content] grid grid-cols-4 gap-7 py-10 px-20">
+            <div className="w-full bg-[#313131] h-[fit-content] grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-7 py-10 xl:px-20 lg:px-14 md:px-12 sm:px-10 px-5">
 
                 <div className="first w-1/4">
                     <img src="https://itokri.com/cdn/shop/files/Group_1458_3x_be73e1fb-423f-4514-8f4c-5ddc73c2a69c.png?v=1661708430&width=100" alt="" />
@@ -98,7 +98,7 @@ function NewFooter() {
 
                 <div className="first ">
                     <h2 className="w-full font-bold text-gray-400 text-[1.4rem]">Quick links</h2>
-                    <div className="w-full flex flex-row text-white mt-5">
+                    <div className="w-full flex xl:flex-row lg:flex-row md:flex-row sm:flex-row flex-col text-white mt-5">
                         <div className="w-1/2 ">
                             {
                                 quicklinks.map((item, index) => (
